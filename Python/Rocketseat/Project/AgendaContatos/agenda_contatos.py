@@ -35,7 +35,7 @@ while True:
         break
 
     elif escolha == "1":
-        nome = input("Nome: ")
+        nome = input("Nome: ").title()
         telefone = input("Telefone: ")
         email = input("Email: ")
         favorito = input("É favorito? (S/N): ").upper() == "S"
@@ -43,7 +43,9 @@ while True:
         agenda.adicionar_contato(novo_contato)
 
     elif escolha == "2":
-        pass
+        agenda.visualizar_contatos()
+        #formatar numero de telefone
+        #queria poder aumentar o tamanho da estrela
 
     elif escolha == "3":
         pass
