@@ -1,5 +1,18 @@
 from agenda import Agenda
 from contato import Contato
+import re
+
+def validar_email(email):
+    padrao_email = r'^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$'
+    return re.match(padrao_email, email) is not None
+
+def validar_telefone(telefone):
+    # Adapte este padrão conforme necessário para aceitar diferentes formatos de telefone
+    padrão_telefone = r'^\d{10}$'
+    return re.match(padrão_telefone, telefone) is not None
+
+def validar_nome(nome):
+    return nome.isalpha() and nome.strip() != ""
 
 # Criando uma instância da classe Agenda
 agenda = Agenda()
@@ -28,8 +41,17 @@ while True:
     elif escolha == "1":
         # Obtendo dados para adicionar um novo contato
         nome = input("Nome: ").title()
+        while not validar_nome(nome):
+            print("Erro: Por favor, insira um nome válido.")
+            nome = input("Nome: ").title()
         telefone = input("Telefone: ")
+        while not validar_telefone(telefone):
+            print("Erro: Por favor, insira um número de telefone válido.")
+            telefone = input("Telefone: ")
         email = input("Email: ")
+        while not validar_email(email):
+            print("Erro: Por favor, insira um email válido.")
+            email = input("Email: ")
         favorito = input("É favorito? (S/N): ").upper() == "S"
         novo_contato = Contato(nome, telefone, email, favorito)
         
@@ -49,8 +71,17 @@ while True:
         
         # Obtendo novos dados para o contato
         novo_nome = input("Novo nome: ").title()
+        while not validar_nome(novo_nome):
+            print("Erro: Por favor, insira um nome válido.")
+            novo_nome = input("Nome: ").title()
         novo_telefone = input("Novo telefone: ")
+        while not validar_telefone(novo_telefone):
+            print("Erro: Por favor, insira um número de telefone válido.")
+            novo_telefone = input("Telefone: ")
         novo_email = input("Novo Email: ")
+        while not validar_email(novo_email):
+            print("Erro: Por favor, insira um email válido.")
+            novo_email = input("Email: ")
         novo_favorito = input("É favorito? (S/N): ").upper() == "S"
         
         # Criando um novo contato com os dados atualizados
