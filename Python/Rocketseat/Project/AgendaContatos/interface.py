@@ -8,12 +8,11 @@ def validar_email(email):
 
 def validar_telefone(telefone):
     # Adapte este padrão conforme necessário para aceitar diferentes formatos de telefone
-    padrão_telefone = r'^\d{10}$'
+    padrão_telefone = r'^\d{11}$'
     return re.match(padrão_telefone, telefone) is not None
 
 def validar_nome(nome):
-    return nome.isalpha() and nome.strip() != ""
-
+    return all(caractere.isalpha() or caractere.isspace() for caractere in nome) and nome.strip() != ""
 # Criando uma instância da classe Agenda
 agenda = Agenda()
 
