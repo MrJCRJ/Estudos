@@ -24,7 +24,12 @@ class Agenda:
         self.contatos[indece].favorito = not self.contatos[indece].favorito
 
     def listar_favoritos(self):
-        pass
+        favoritos = []
+        for contato in self.contatos:
+            if contato.favorito:
+                favoritos.append(contato)
+        for indece, contato in enumerate(favoritos, start=1):
+            print(f"{indece}. {contato.nome} - {contato.telefone} - {contato.email}")
 
     def apagar_contato(self, indece):
         pass
@@ -77,7 +82,7 @@ while True:
         agenda.marcar_desmarcar_favorito(indice)
 
     elif escolha == "5":
-        pass
+        agenda.listar_favoritos
 
     elif escolha == "6":
         pass
