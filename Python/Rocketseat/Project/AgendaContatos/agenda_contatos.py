@@ -32,7 +32,7 @@ class Agenda:
             print(f"{indece}. {contato.nome} - {contato.telefone} - {contato.email}")
 
     def apagar_contato(self, indece):
-        pass
+        del self.contatos[indece]
 
 
 
@@ -85,7 +85,9 @@ while True:
         agenda.listar_favoritos
 
     elif escolha == "6":
-        pass
+        agenda.visualizar_contatos()
+        indice = int(input("Índice do contato a ser apagado: ")) - 1
+        agenda.apagar_contato(indice)
 
     else:
         print("Opção inválida. Tente novamente.")
