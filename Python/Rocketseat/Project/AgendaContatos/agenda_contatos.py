@@ -21,7 +21,7 @@ class Agenda:
         self.contatos[indice] = novo_contato
 
     def marcar_desmarcar_favorito(self, indece):
-        pass
+        self.contatos[indece].favorito = not self.contatos[indece].favorito
 
     def listar_favoritos(self):
         pass
@@ -72,7 +72,9 @@ while True:
         agenda.editar_contato(indice, novo_contato)
 
     elif escolha == "4":
-        pass
+        agenda.visualizar_contatos()
+        indice = int(input("Índice do contato a ser marcado/desmarcado como favorito: ")) - 1
+        agenda.marcar_desmarcar_favorito(indice)
 
     elif escolha == "5":
         pass
