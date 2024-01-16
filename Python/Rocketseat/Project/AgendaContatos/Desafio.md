@@ -4,7 +4,7 @@ Desafio referente ao módulo: Introdução ao Python
 
 ## Introdução
 
-Faaala Dev,
+Faala Dev,
 
 Nesse desafio você reforçará de forma prática os **conceitos** que aprendemos nesse módulo.
 
