@@ -11,6 +11,10 @@ class Agenda:
 
     def adicionar_contato(self, contato):
         self.contatos.append(contato)
+    
+    def visualizar_contatos(self):
+        for i, contato in enumerate(self.contatos, start=1):
+            print(f"{i}. {contato.nome} - {contato.telefone} - {contato.email} {'★' if contato.favorito else ''}")
 
 
 
