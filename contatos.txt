@@ -1,1 +1,0 @@
-[{"nome": "Jose Cicero Ribeiro Junior", "telefone": "75983403977", "email": "mr.jociriju@gmail.com", "favorito": true}, {"nome": "Teste", "telefone": "dawd", "email": "najwd", "favorito": false}, {"nome": "5555668", "telefone": "544654", "email": "54", "favorito": false}]

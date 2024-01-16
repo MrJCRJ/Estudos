@@ -7,20 +7,14 @@ def validar_email(email):
     return re.match(padrao_email, email) is not None
 
 def validar_telefone(telefone):
-    # Adapte este padrão conforme necessário para aceitar diferentes formatos de telefone
-    padrão_telefone = r'^\d{11}$'
+    # Padrão mais flexível para aceitar diferentes formatos de telefone
+    padrão_telefone = r'^\d{10,14}$'
     return re.match(padrão_telefone, telefone) is not None
 
 def validar_nome(nome):
     return all(caractere.isalpha() or caractere.isspace() for caractere in nome) and nome.strip() != ""
-# Criando uma instância da classe Agenda
-agenda = Agenda()
 
-# Carregando contatos do arquivo 'contatos.txt'
-agenda.carregar_contatos_de_arquivo('contatos.txt')
-
-while True:
-    # Exibindo o menu
+def exibir_menu():
     print("\n1. Adicionar Contato")
     print("2. Visualizar Contatos")
     print("3. Editar Contato")
@@ -29,8 +23,20 @@ while True:
     print("6. Apagar Contato")
     print("0. Sair")
 
+def obter_escolha_usuario():
+    return input("Escolha uma opção: ")
+
+# Criando uma instância da classe Agenda
+agenda = Agenda()
+
+# Carregando contatos do arquivo 'contatos.txt'
+agenda.carregar_contatos_de_arquivo('contatos.txt')
+
+while True:
+    # Exibindo o menu
+    exibir_menu()
     # Solicitando a escolha do usuário
-    escolha = input("Escolha uma opção: ")
+    escolha = obter_escolha_usuario()
 
     if escolha == "0":
         # Salvando contatos no arquivo 'contatos.txt' e encerrando o programa
