@@ -1,3 +1,5 @@
+import json
+
 class Contato:
     def __init__(self, nome, telefone, email, favorito=False):
         self.nome = nome
@@ -20,23 +22,38 @@ class Agenda:
     def editar_contato(self, indice, novo_contato):
         self.contatos[indice] = novo_contato
 
-    def marcar_desmarcar_favorito(self, indece):
-        self.contatos[indece].favorito = not self.contatos[indece].favorito
+    def marcar_desmarcar_favorito(self, indice):
+        self.contatos[indice].favorito = not self.contatos[indice].favorito
 
     def listar_favoritos(self):
         favoritos = []
         for contato in self.contatos:
             if contato.favorito:
                 favoritos.append(contato)
-        for indece, contato in enumerate(favoritos, start=1):
-            print(f"{indece}. {contato.nome} - {contato.telefone} - {contato.email}")
+        for indice, contato in enumerate(favoritos, start=1):
+            print(f"{indice}. {contato.nome} - {contato.telefone} - {contato.email}")
 
-    def apagar_contato(self, indece):
-        del self.contatos[indece]
+    def apagar_contato(self, indice):
+        del self.contatos[indice]
+    
+    def salvar_contatos_em_arquivo(self, nome_arquivo):
+        with open(nome_arquivo, 'w') as arquivo:
+            contatos_serializados = [vars(contato) for contato in self.contatos]
+            json.dump(contatos_serializados, arquivo)
+    
+    def carregar_contatos_de_arquivo(self, nome_arquivo):
+        try:
+            with open(nome_arquivo, 'r') as arquivo:
+                contatos_serializados = json.load(arquivo)
+                self.contatos = [Contato(**contato) for contato in contatos_serializados]
+        except FileNotFoundError:
+            pass  # Ignora se o arquivo não existir
+
 
 
 
 agenda = Agenda()
+agenda.carregar_contatos_de_arquivo('contatos.txt')
 
 while True:
     print("\n1. Adicionar Contato")
@@ -51,6 +68,7 @@ while True:
     
     
     if escolha == "0":
+        agenda.salvar_contatos_em_arquivo('contatos.txt')
         break
 
     elif escolha == "1":
@@ -69,7 +87,7 @@ while True:
     elif escolha == "3":
         agenda.visualizar_contatos()
         indice = int(input("Índice do contato a ser editado: ")) -1
-        novo_nome = input("Novo nome: ")
+        novo_nome = input("Novo nome: ").title()
         novo_telefone = input("Novo telefone: ")
         novo_email = input("Novo Email: ")
         novo_favorito = input("É favorito? (S/N): ").upper() == "S"
@@ -82,7 +100,7 @@ while True:
         agenda.marcar_desmarcar_favorito(indice)
 
     elif escolha == "5":
-        agenda.listar_favoritos
+        agenda.listar_favoritos()
 
     elif escolha == "6":
         agenda.visualizar_contatos()
