@@ -6,6 +6,7 @@ class Contato:
         self.favorito = favorito
 
 class Agenda:
+    # Criar um bloco de notas para deixar salvo no computador
     def __init__(self):
         self.contatos = []
 
@@ -13,12 +14,25 @@ class Agenda:
         self.contatos.append(contato)
     
     def visualizar_contatos(self):
-        for i, contato in enumerate(self.contatos, start=1):
-            print(f"{i}. {contato.nome} - {contato.telefone} - {contato.email} {'★' if contato.favorito else ''}")
+        for indece, contato in enumerate(self.contatos, start=1):
+            print(f"{indece}. {contato.nome} - {contato.telefone} - {contato.email} {'★' if contato.favorito else ''}")
+    
+    def editar_contato(self, indice, novo_contato):
+        self.contatos[indice] = novo_contato
+
+    def marcar_desmarcar_favorito(self, indece):
+        pass
+
+    def listar_favoritos(self):
+        pass
+
+    def apagar_contato(self, indece):
+        pass
 
 
 
 agenda = Agenda()
+
 while True:
     print("\n1. Adicionar Contato")
     print("2. Visualizar Contatos")
@@ -48,7 +62,14 @@ while True:
         #queria poder aumentar o tamanho da estrela
 
     elif escolha == "3":
-        pass
+        agenda.visualizar_contatos()
+        indice = int(input("Índice do contato a ser editado: ")) -1
+        novo_nome = input("Novo nome: ")
+        novo_telefone = input("Novo telefone: ")
+        novo_email = input("Novo Email: ")
+        novo_favorito = input("É favorito? (S/N): ").upper() == "S"
+        novo_contato = Contato(novo_nome, novo_telefone, novo_email, novo_favorito)
+        agenda.editar_contato(indice, novo_contato)
 
     elif escolha == "4":
         pass
