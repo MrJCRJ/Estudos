@@ -1,7 +1,7 @@
-# Agenda.py
 import json
 from contato import Contato
 import os
+from mensagens import exibir_mensagem_erro, exibir_mensagem_sucesso
 
 class Agenda:
     # Inicializa a Agenda com uma lista vazia de contatos
@@ -11,7 +11,7 @@ class Agenda:
     # Adiciona um novo contato à lista de contatos
     def adicionar_contato(self, contato):
         self.contatos.append(contato)
-        print(f"Contato {contato.nome} adicionado com sucesso!")
+        exibir_mensagem_sucesso(f"Contato {contato.nome} adicionado com sucesso!")
 
     # Exibe todos os contatos na agenda
     def visualizar_contatos(self):
@@ -24,14 +24,14 @@ class Agenda:
     def editar_contato(self, indice, novo_contato):
         if 0 <= indice < len(self.contatos):
             self.contatos[indice] = novo_contato
-            print(f"Contato {novo_contato.nome} editado com sucesso!")
+            exibir_mensagem_sucesso(f"Contato {novo_contato.nome} editado com sucesso!")
         else:
-            print("Erro: Índice inválido.")
+            exibir_mensagem_erro("Índice inválido.")
 
     # Marca ou desmarca um contato como favorito
     def marcar_desmarcar_favorito(self, indice):
         self.contatos[indice].favorito = not self.contatos[indice].favorito
-        print("Marcação feita com sucesso!")
+        exibir_mensagem_sucesso("Marcação feita com sucesso!")
 
     # Lista todos os contatos marcados como favoritos
     def listar_favoritos(self):
@@ -45,16 +45,16 @@ class Agenda:
         if 0 <= indice < len(self.contatos):
             nome_contato = self.contatos[indice].nome
             del self.contatos[indice]
-            print(f"Contato {nome_contato} apagado com sucesso!")
+            exibir_mensagem_sucesso(f"Contato {nome_contato} apagado com sucesso!")
         else:
-            print("Erro: Índice inválido.")
+            exibir_mensagem_erro("Índice inválido.")
 
     # Salva os contatos em um arquivo no formato JSON
     def salvar_contatos_em_arquivo(self, nome_arquivo):
         with open(nome_arquivo, 'w') as arquivo:
             contatos_serializados = [vars(contato) for contato in self.contatos]
             json.dump(contatos_serializados, arquivo)
-            print("Conta salva com sucesso!")
+            exibir_mensagem_sucesso("Contatos salvos com sucesso!")
 
     # Carrega os contatos de um arquivo no formato JSON
     def carregar_contatos_de_arquivo(self, nome_arquivo):
@@ -63,6 +63,6 @@ class Agenda:
                 with open(nome_arquivo, 'r') as arquivo:
                     contatos_serializados = json.load(arquivo)
                     self.contatos = [Contato(**contato) for contato in contatos_serializados]
-                    print("Carregamento concluido com sucesso!")
+                    exibir_mensagem_sucesso("Contatos carregados com sucesso!")
             except FileNotFoundError:
-                pass  # Ignora se o arquivo não existir
+                exibir_mensagem_erro("Erro: Arquivo não encontrado.")

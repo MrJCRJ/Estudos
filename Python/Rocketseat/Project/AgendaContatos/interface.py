@@ -1,4 +1,3 @@
-# Interface.py
 from agenda import Agenda
 from contato import Contato
 from validador import validar_email, validar_nome, validar_telefone
