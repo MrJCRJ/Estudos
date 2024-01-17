@@ -34,10 +34,10 @@ while True:
 
     elif escolha == "1":
         # Obtendo dados para adicionar um novo contato
-        nome = input("Nome: ").title()
+        nome = input("Informe o nome completo: ").title()
         while not validar_nome(nome):
             print("Erro: Por favor, insira um nome válido.")
-            nome = input("Nome: ").title()
+            nome = input("Informe o nome completo:: ").title()
         telefone = input("Telefone: ")
         while not validar_telefone(telefone):
             print("Erro: Por favor, insira um número de telefone válido.")
@@ -61,7 +61,10 @@ while True:
         agenda.visualizar_contatos()
         
         # Obtendo índice do contato a ser editado
-        indice = int(input("Índice do contato a ser editado: ")) - 1
+        try:
+            indice = int(input("Índice do contato a ser editado: ")) - 1
+        except ValueError:
+            print("Erro: Por favor, insira um número válido.")
         
         # Obtendo novos dados para o contato
         novo_nome = input("Novo nome: ").title()
