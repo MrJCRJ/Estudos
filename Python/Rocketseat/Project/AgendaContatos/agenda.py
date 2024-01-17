@@ -1,5 +1,7 @@
+# Agenda.py
 import json
 from contato import Contato
+import os
 
 class Agenda:
     # Inicializa a Agenda com uma lista vazia de contatos
@@ -42,9 +44,10 @@ class Agenda:
 
     # Carrega os contatos de um arquivo no formato JSON
     def carregar_contatos_de_arquivo(self, nome_arquivo):
-        try:
-            with open(nome_arquivo, 'r') as arquivo:
-                contatos_serializados = json.load(arquivo)
-                self.contatos = [Contato(**contato) for contato in contatos_serializados]
-        except FileNotFoundError:
-            pass  # Ignora se o arquivo não existir
+        if os.path.exists(nome_arquivo):
+            try:
+                with open(nome_arquivo, 'r') as arquivo:
+                    contatos_serializados = json.load(arquivo)
+                    self.contatos = [Contato(**contato) for contato in contatos_serializados]
+            except FileNotFoundError:
+                pass  # Ignora se o arquivo não existir

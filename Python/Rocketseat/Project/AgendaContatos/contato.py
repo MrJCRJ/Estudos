@@ -1,3 +1,4 @@
+# Contato.py
 class Contato:
     def __init__(self, nome, telefone, email, favorito=False):
 
