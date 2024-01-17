@@ -1,4 +1,3 @@
-
 # Agenda de Contatos
 
 Um simples aplicativo de agenda de contatos em Python.
@@ -11,6 +10,13 @@ Um simples aplicativo de agenda de contatos em Python.
 - Marcar/desmarcar um contato como favorito.
 - Visualizar a lista de contatos favoritos.
 - Apagar um contato.
+
+## Novidades
+
+- Implementação de mensagens de sucesso/erro para melhor feedback do usuário.
+- Tratamento de exceções para lidar com situações inesperadas.
+- Confirmações adicionadas para ações como adicionar, editar e apagar contatos.
+- Validação aprimorada para garantir dados de entrada válidos.
 
 ## Como Usar
 
@@ -53,9 +59,3 @@ Se quiser contribuir para este projeto, siga estas etapas:
 
 ## Licença
 Este projeto é licenciado sob a Licença MIT.
-
-
-
-
-
-
