@@ -7,17 +7,22 @@ def adicionar_tarefas(tarefas, nome_tarefa):
 def ver_tarefas(tarefas):
     print("\nLista de Tarefas:")
     for indice, tarefa in enumerate(tarefas, start=1):
-        status =  "✓" if tarefa["completado"] else " "
+        status =  "✓" if tarefa["completada"] else " "
         nome_tarefa = tarefa["tarefa"]
         print(f"{indice}. [{status}] {nome_tarefa}")
     
 def atualizar_nome_tarefa(tarefas, indice_tarefa, novo_nome_tarefa):
-    indece_tarefa_ajustado = indece_tarefa - 1
+    indece_tarefa_ajustado = int(indece_tarefa) - 1
     if indece_tarefa_ajustado >= 0 and indece_tarefa_ajustado < len(tarefas):
         tarefas[indece_tarefa_ajustado]["tarefa"] = novo_nome_tarefa
         print(f"Tarefa {indice_tarefa} atualizada para {novo_nome_tarefa}")
     else:
-        print("Indeci de tarefa invalido! ")
+        print("Indice de tarefa invalido! ")
+
+def completar_tarefa(tarefas, indice_tarefa):
+    indece_tarefa_ajustado = int(indece_tarefa) - 1
+    tarefas[indece_tarefa_ajustado]["completada"] = True
+    print(f"Tarefa {indece_tarefa} marcada como completada")
 
 def menu():
     print("\n Menu do Gerenciador de Lista de Tarefas: ")
@@ -51,7 +56,9 @@ while True:
         atualizar_nome_tarefa(tarefas, indece_tarefa, novo_nome)
 
     elif escolha == "4":
-        pass
+        ver_tarefas(tarefas)
+        indece_tarefa = input("Digite o número da tarefa que deseja completar:")
+        completar_tarefa(tarefas, indece_tarefa)
     elif escolha == "5":
         pass
 
