@@ -45,9 +45,14 @@ def update_task(id):
         return jsonify({"message": "Não foi possivel encontrar a atividade"}), 404
     
     data = request.get_json()
-    task.title = data['title']
-    task.description = data['description']
-    task.completed = data['completed']
+
+    try:
+        task.title = data['title']
+        task.description = data['description']
+        task.completed = data['completed']
+        return jsonify({"message": "Tarefa atualizada com sucesso"})
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
 
 @app.route("/tasks/<int:id>", methods=["DELETE"])
 def delete_task(id):
