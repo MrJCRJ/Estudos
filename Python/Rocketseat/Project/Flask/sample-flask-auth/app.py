@@ -2,7 +2,7 @@ from flask import Flask, render_template, request, jsonify
 from models.user import User
 from database import db
 from config import Config
-from flask_login import LoginManager, login_user, logout_user, login_required
+from flask_login import LoginManager, login_user, logout_user, login_required, current_user
 
 
 app = Flask(__name__)
@@ -89,7 +89,13 @@ def update_user(id_user):
 def delete_user(id_user):
     user = User.query.get(id_user)
 
+    if id_user == current_user.id:
+        return jsonify({'message': 'Deleção não permitida'}), 403
+    
     if user:
+        db.session.delete(user)
+        db.session.commit()
+
         return jsonify({'message': f'Usuário {id_user} deletado com sucesso'})
     
     return jsonify({'message': 'Usuario não encontrado'}), 404
