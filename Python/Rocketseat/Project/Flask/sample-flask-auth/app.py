@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, request, jsonify
 from models.user import User
 from database import db
 from config import Config
@@ -100,9 +100,6 @@ def delete_user(id_user):
     
     return jsonify({'message': 'Usuario não encontrado'}), 404
 
-@app.route("/hello-world", methods=["GET"])
-def hello_world():
-    return "Hello world"
 
 if __name__ == '__main__':
     app.run(debug=True)
