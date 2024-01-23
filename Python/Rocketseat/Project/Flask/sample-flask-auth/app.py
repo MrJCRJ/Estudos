@@ -3,6 +3,7 @@ from models.user import User
 from database import db
 from config import Config
 from flask_login import LoginManager, login_user, logout_user, login_required, current_user
+import bcrypt
 
 
 app = Flask(__name__)
@@ -30,7 +31,7 @@ def login():
     if username and password:
         user = User.query.filter_by(username=username).first()
 
-        if user and user.password == password:
+        if user and bcrypt.checkpw(str.encode(password), str.encode(user.password)):
             login_user(user)
             return jsonify({"message": "Autenticação realizada com sucesso"})
 
@@ -53,7 +54,8 @@ def create_user():
     password = data.get("password")
 
     if username and password:
-        user = User(username=username, password=password, role='user')
+        hashed_password = bcrypt.hashpw(str.encode(password), bcrypt.gensalt())
+        user = User(username=username, password=hashed_password, role='user')
         db.session.add(user)
         db.session.commit()
         return jsonify({'message': 'Usuario cadastrado com sucesso'})
