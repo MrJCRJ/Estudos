@@ -5,4 +5,4 @@ __pycache__/
 dist/
 build/
 *.egg-info/
-Python/Rocketseat/Project/Flask/sample-flask-auth/mysql/
+Rocketseat/Python/Project/Flask/sample-flask-auth/mysql/
