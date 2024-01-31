@@ -1,0 +1,90 @@
+@import url('https://fonts.googleapis.com/css2?family=Dosis:wght@400;700&family=Open+Sans:wght@400;700&display=swap');
+
+
+body {
+  font-family: 'Open Sans', sans-serif;
+  text-align: center;
+  margin: 0;
+}
+
+#main {
+  width: 626px;
+  text-align: center;
+  margin: 64px auto;
+}
+
+#main img {
+  margin-bottom: 32px;
+}
+
+h1 {
+  font-family: 'Dosis', sans-serif;
+  font-size: 32px;
+  line-height: 56px;
+  font-weight: normal;
+  color: #3F3D56;
+
+  margin-top: 0;
+  margin-bottom: 16px;
+}
+
+h1 span {
+  font-weight: bold;
+}
+
+span{
+  color: #EE24FF;
+}
+
+#main div {
+  width: 540px;
+  margin: 0 auto;
+}
+
+p{
+  color: #828282;
+
+  font-size: 15px;
+  line-height: 22px;
+}
+
+p strong {
+  color: #3F3D56;
+}
+
+#Flutuar {
+  color:#828282;
+}
+
+
+footer {
+  color: #3F3D56;
+  margin-bottom: 40.83px;
+}
+
+footer a + a{
+  margin-left: 42px;
+}
+
+a {
+  text-decoration: none;
+  color: #3F3D56;
+  font-weight: bold;
+}
+
+.line {
+  width: 391px;
+  height: 0px;
+  stroke-width: 1px;
+  stroke: #ECEFF2;
+
+}
+
+#wave {
+  width: 100%;
+  height: 100px; /* Ajuste a altura conforme necessário para criar espaço suficiente abaixo do conteúdo e do footer */
+  position: static;
+  bottom: 0;
+  left: 0;
+  
+}
